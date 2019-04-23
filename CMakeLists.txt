@@ -7,12 +7,9 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+
 # Source Files
-add_library(${PROJECT_NAME}
-	src/3ds_ui.cpp
-	src/3ds_ui.h
-	src/async_handler.cpp
-	src/async_handler.h
+set (audio
 	src/audio_3ds.cpp
 	src/audio_3ds.h
 	src/audio_al.cpp
@@ -35,23 +32,7 @@ add_library(${PROJECT_NAME}
 	src/audio_secache.h
 	src/audio_switch.cpp
 	src/audio_switch.h
-	src/background.cpp
-	src/background.h
-	src/baseui.cpp
-	src/baseui.h
-	src/battle_animation.cpp
-	src/battle_animation.h
-	src/bitmap.cpp
-	src/bitmapfont.h
-	src/bitmapfont_rmg2000.cpp
-	src/bitmapfont_ttyp0.cpp
-	src/bitmapfont_wqy.cpp
-	src/bitmap.h
-	src/bitmap_hslrgb.h
-	src/cache.cpp
-	src/cache.h
-	src/color.cpp
-	src/color.h
+
 	src/decoder_libsndfile.cpp
 	src/decoder_libsndfile.h
 	src/decoder_mpg123.cpp
@@ -66,22 +47,107 @@ add_library(${PROJECT_NAME}
 	src/decoder_wildmidi.h
 	src/decoder_xmp.cpp
 	src/decoder_xmp.h
+)
+
+set (graphics 
+	src/background.cpp
+	src/background.h
+	src/battle_animation.cpp
+	src/battle_animation.h
+	src/bitmap.h
+	src/bitmap_hslrgb.h
+	src/bitmap.cpp
+	src/color.cpp
+	src/color.h
 	src/default_graphics.h
-	src/dirent_win.h
-	src/docmain.h
 	src/drawable.cpp
 	src/drawable.h
-	src/exe_reader.cpp
-	src/exe_reader.h
 	src/exfont.h
-	src/filefinder.cpp
-	src/filefinder.h
 	src/font.cpp
 	src/font.h
 	src/fps_overlay.cpp
 	src/fps_overlay.h
 	src/frame.cpp
 	src/frame.h
+	src/graphics.cpp
+	src/graphics.h
+	src/hslrgb.cpp
+	src/hslrgb.h
+	src/icon.h
+	src/image_bmp.cpp
+	src/image_bmp.h
+	src/image_png.cpp
+	src/image_png.h
+	src/image_xyz.cpp
+	src/image_xyz.h
+	src/logo.h
+	src/map_data.h
+	src/message_overlay.cpp
+	src/message_overlay.h
+	src/pixel_format.h
+	src/plane.cpp
+	src/plane.h
+	src/rect.cpp
+	src/rect.h
+	src/screen.cpp
+	src/screen.h
+	src/sprite.cpp
+	src/sprite.h
+	src/text.cpp
+	src/text.h
+	src/tilemap.cpp
+	src/tilemap.h
+	src/tilemap_layer.cpp
+	src/tilemap_layer.h
+	src/tone.cpp
+	src/tone.h
+	src/transform.h
+	src/transition.cpp
+	src/transition.h
+	src/weather.cpp
+	src/weather.h
+	src/window.cpp
+	src/window.h
+)
+
+set (input 
+	src/input_buttons_desktop.cpp
+	src/input_buttons_gekko.cpp
+	src/input_buttons.h
+	src/input_buttons_opendingux.cpp
+	src/input_buttons_psp.cpp
+	src/input.cpp
+	src/input.h
+	src/input_source.cpp
+	src/input_source.h
+	src/keys.h
+)
+
+set (ui
+	src/baseui.cpp
+	src/baseui.h
+ 	src/psp2_ui.cpp
+	src/psp2_ui.h
+	src/3ds_ui.cpp
+	src/3ds_ui.h
+	src/sdl2_ui.cpp
+	src/sdl2_ui.h
+	src/sdl_ui.cpp
+	src/sdl_ui.h
+	src/switch_ui.cpp
+	src/switch_ui.h
+)
+
+set (engine
+	src/async_handler.cpp
+	src/async_handler.h
+	src/cache.cpp
+	src/cache.h
+	src/player.cpp
+	src/player.h
+)
+
+set (game
 	src/game_actor.cpp
 	src/game_actor.h
 	src/game_actors.cpp
@@ -134,52 +200,10 @@ add_library(${PROJECT_NAME}
 	src/game_variables.h
 	src/game_vehicle.cpp
 	src/game_vehicle.h
-	src/graphics.cpp
-	src/graphics.h
-	src/hslrgb.cpp
-	src/hslrgb.h
-	src/icon.h
-	src/image_bmp.cpp
-	src/image_bmp.h
-	src/image_png.cpp
-	src/image_png.h
-	src/image_xyz.cpp
-	src/image_xyz.h
-	src/input_buttons_desktop.cpp
-	src/input_buttons_gekko.cpp
-	src/input_buttons.h
-	src/input_buttons_opendingux.cpp
-	src/input_buttons_psp.cpp
-	src/input.cpp
-	src/input.h
-	src/input_source.cpp
-	src/input_source.h
-	src/keys.h
-	src/logo.h
-	src/main_data.cpp
-	src/main_data.h
-	src/map_data.h
-	src/memory_management.h
-	src/message_overlay.cpp
-	src/message_overlay.h
-	src/options.h
-	src/output.cpp
-	src/output.h
-	src/picojson.h
-	src/pixel_format.h
-	src/plane.cpp
-	src/plane.h
-	src/player.cpp
-	src/player.h
-	src/psp2_ui.cpp
-	src/psp2_ui.h
-	src/rect.cpp
-	src/rect.h
-	src/registry.cpp
-	src/registry.h
-	src/registry_wine.cpp
-	src/rtp_table.cpp
-	src/rtp_table.h
+	src/teleport_target.h
+)
+
+set (scene
 	src/scene_actortarget.cpp
 	src/scene_actortarget.h
 	src/scene_battle.cpp
@@ -228,51 +252,24 @@ add_library(${PROJECT_NAME}
 	src/scene_teleport.h
 	src/scene_title.cpp
 	src/scene_title.h
-	src/screen.cpp
-	src/screen.h
-	src/sdl2_ui.cpp
-	src/sdl2_ui.h
-	src/sdl_ui.cpp
-	src/sdl_ui.h
-	src/shinonome_gothic.cpp
-	src/shinonome_mincho.cpp
+)
+
+set (sprite
 	src/sprite_airshipshadow.cpp
 	src/sprite_airshipshadow.h
 	src/sprite_battler.cpp
 	src/sprite_battler.h
 	src/sprite_character.cpp
 	src/sprite_character.h
-	src/sprite.cpp
-	src/sprite.h
 	src/spriteset_battle.cpp
 	src/spriteset_battle.h
 	src/spriteset_map.cpp
 	src/spriteset_map.h
 	src/sprite_timer.cpp
 	src/sprite_timer.h
-	src/switch_ui.cpp
-	src/switch_ui.h
-	src/system.h
-	src/teleport_target.h
-	src/text.cpp
-	src/text.h
-	src/tilemap.cpp
-	src/tilemap.h
-	src/tilemap_layer.cpp
-	src/tilemap_layer.h
-	src/tone.cpp
-	src/tone.h
-	src/transform.h
-	src/transition.cpp
-	src/transition.h
-	src/util_macro.h
-	src/utils.cpp
-	src/utils.h
-	src/util_win.cpp
-	src/util_win.h
-	src/version.h
-	src/weather.cpp
-	src/weather.h
+)
+
+set (window
 	src/window_about.cpp
 	src/window_about.h
 	src/window_actorinfo.cpp
@@ -295,7 +292,6 @@ add_library(${PROJECT_NAME}
 	src/window_battlestatus.h
 	src/window_command.cpp
 	src/window_command.h
-	src/window.cpp
 	src/window_equip.cpp
 	src/window_equip.h
 	src/window_equipitem.cpp
@@ -307,8 +303,7 @@ add_library(${PROJECT_NAME}
 	src/window_gamelist.cpp
 	src/window_gamelist.h
 	src/window_gold.cpp
-	src/window_gold.h
-	src/window.h
+	src/window_gold.h	
 	src/window_help.cpp
 	src/window_help.h
 	src/window_item.cpp
@@ -351,6 +346,72 @@ add_library(${PROJECT_NAME}
 	src/window_teleport.h
 	src/window_varlist.cpp
 	src/window_varlist.h
+)
+
+set (settings 
+	src/memory_management.h
+	src/options.h
+	src/system.h
+)
+
+set  (filefinder
+	src/dirent_win.h
+	src/filefinder.cpp
+	src/filefinder.h
+)
+
+set (tools
+	src/output.cpp
+	src/output.h
+	src/picojson.h
+	src/registry.cpp
+	src/registry.h
+	src/registry_wine.cpp
+	src/rtp_table.cpp
+	src/rtp_table.h
+	src/util_macro.h
+	src/utils.cpp
+	src/utils.h
+	src/util_win.cpp
+	src/util_win.h
+	src/version.h
+	src/docmain.h
+	src/exe_reader.cpp
+	src/exe_reader.h
+)
+
+set(shinonome 
+	src/shinonome_gothic.cpp
+	src/shinonome_mincho.cpp
+	src/bitmapfont.h
+	src/bitmapfont_rmg2000.cpp
+	src/bitmapfont_ttyp0.cpp
+	src/bitmapfont_wqy.cpp
+)
+
+set (noGroup 
+	src/main_data.cpp
+	src/main_data.h	
+)
+
+add_library(${PROJECT_NAME}
+	# backend
+	${audio}
+	${graphics}
+	${input}
+	${ui}
+
+	#engine
+	${engine}
+	${game}
+	${scene}
+	${sprite}
+	${window}
+
+	${settings}
+	${tools}
+	${filefinder}
+	${noGroup}
 )
 
 include(CMakeDependentOption)
@@ -580,13 +641,18 @@ if(${PLAYER_AUDIO_BACKEND} MATCHES "^SDL.*$")
 		DEFINITION HAVE_WILDMIDI
 		TARGET WildMidi::WildMidi)
 
-	# xmp (lite)
-	player_find_package(NAME XMP
-		CONDITION PLAYER_WITH_XMP
-		DEFINITION HAVE_XMP
-		TARGET XMP::XMP)
-
 	if(PLAYER_ENABLE_FMMIDI)
+
+		set(fmmidi 
+			src/decoder_fmmidi.cpp
+			src/decoder_fmmidi.h
+			src/midiprogram.h
+			src/midisequencer.cpp
+			src/midisequencer.h
+			src/midisynth.cpp
+			src/midisynth.h
+		)
+
 		target_sources(${PROJECT_NAME} PRIVATE
 			src/decoder_fmmidi.cpp
 			src/decoder_fmmidi.h
@@ -594,9 +660,19 @@ if(${PLAYER_AUDIO_BACKEND} MATCHES "^SDL.*$")
 			src/midisequencer.cpp
 			src/midisequencer.h
 			src/midisynth.cpp
-			src/midisynth.h)
+			src/midisynth.h
+		)
+
+
 	endif()
+
+	# xmp (lite)
+	player_find_package(NAME XMP
+		CONDITION PLAYER_WITH_XMP
+		DEFINITION HAVE_XMP
+		TARGET XMP::XMP)
 endif()
+
 
 # MSVC: Set UTF-8 encoding for all files (important for rtp table)
 if(MSVC)
@@ -810,3 +886,27 @@ else()
 endif()
 
 message(STATUS "")
+
+# backend
+source_group("Source Files\\Backend\\Audio" FILES ${audio})
+if(PLAYER_ENABLE_FMMIDI)
+	source_group("Source Files\\Backend\\Audio" FILES ${fmmidi})
+endif()
+source_group("Source Files\\Backend\\Graphics" FILES ${graphics})
+source_group("Source Files\\Backend\\Input" FILES ${input})
+source_group("Source Files\\Backend\\UI" FILES ${ui})
+
+# engine
+source_group("Source Files\\Engine\\" FILES ${engine})
+source_group("Source Files\\Engine\\Game" FILES ${game})
+source_group("Source Files\\Engine\\Scene" FILES ${scene})
+source_group("Source Files\\Engine\\Sprite" FILES ${sprite})
+source_group("Source Files\\Engine\\Window" FILES ${window})
+
+source_group("Source Files\\Settings\\" FILES ${settings})
+source_group("Source Files\\Shinonome\\" FILES ${shinonome})
+source_group("Source Files\\Tools\\" FILES ${tools})
+source_group("Source Files\\Tools\\Filefinder" FILES ${filefinder})
+
+# this is used to get rid of header/source seperation
+source_group("Source Files" FILES ${noGroup})
